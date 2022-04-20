@@ -12,6 +12,7 @@ const Map = ({
     setBounds,
     places,
     setChildClicked,
+    weatherData,
 }) => {
     const classes = useStyles()
     const isDesktop = useMediaQuery('(min-width: 600px)')
@@ -20,12 +21,16 @@ const Map = ({
         <div className={classes.mapContainer}>
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: 'AIzaSyCkTCN0y1PWGq2b-XOqI_3oPrsl-2WHTkc',
+                    key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
                 }}
                 defaultCenter={coordinates}
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50, 50, 50, 50]}
+                options={{
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                }}
                 onChange={(e) => {
                     setCoordinates({ lat: e.center.lat, lng: e.center.lng })
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
@@ -69,6 +74,14 @@ const Map = ({
                                 />
                             </Paper>
                         )}
+                    </div>
+                ))}
+                {weatherData?.list?.map((data, i) => (
+                    <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
+                        <img
+                            src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                            alt="Weather Icon"
+                        />
                     </div>
                 ))}
             </GoogleMapReact>
