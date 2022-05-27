@@ -21,7 +21,7 @@ Guide to the best restaurants, hotels and attractions around you.
 ## Preview
 
 <div align="center">
-<img src="preview.gif" />
+<img src="preview.png" />
 </div>
 
 ## Setup
