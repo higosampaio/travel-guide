@@ -46,4 +46,4 @@ yarn start
 
 ## License
 
-...
+UNLICENSE
